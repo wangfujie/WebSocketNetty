@@ -1,4 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 WebSocketNettyServer/target
-WebSocketNetty.iml
+*.iml
+WebSocketNettyServer/*.iml
+WebSocketNettyClient/*.iml
