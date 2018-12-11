@@ -1,2 +1,2 @@
 # WebSocketNetty
-Netty简单通信
+Simple communication by Netty
