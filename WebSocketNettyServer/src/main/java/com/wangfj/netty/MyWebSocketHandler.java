@@ -75,23 +75,6 @@ public class MyWebSocketHandler extends SimpleChannelInboundHandler<Object> {
     }
 
     /**
-     * 服务端处理客户端请求的核心方法
-     * @param context
-     * @param msg
-     * @throws Exception
-     */
-    @Override
-    protected void messageReceived(ChannelHandlerContext context, Object msg) throws Exception {
-        if (msg instanceof FullHttpRequest){
-            //处理客户端向服务端发起http握手请求的业务
-            handHttpRequest(context, (FullHttpRequest) msg);
-        }else if (msg instanceof WebSocketFrame){
-            //处理webSocket连接业务
-            handWebSocketFrame(context, (WebSocketFrame) msg);
-        }
-    }
-
-    /**
      * 处理客户端和服务端之间的webSocket业务
      * @param ctx
      * @param frame
@@ -156,6 +139,23 @@ public class MyWebSocketHandler extends SimpleChannelInboundHandler<Object> {
         ChannelFuture f = ctx.channel().writeAndFlush(res);
         if (res.status().code() != 200) {
             f.addListener(ChannelFutureListener.CLOSE);
+        }
+    }
+
+    /**
+     * 服务端处理客户端请求的核心方法
+     * @param context
+     * @param msg
+     * @throws Exception
+     */
+    @Override
+    protected void channelRead0(ChannelHandlerContext context, Object msg) throws Exception {
+        if (msg instanceof FullHttpRequest){
+            //处理客户端向服务端发起http握手请求的业务
+            handHttpRequest(context, (FullHttpRequest) msg);
+        }else if (msg instanceof WebSocketFrame){
+            //处理webSocket连接业务
+            handWebSocketFrame(context, (WebSocketFrame) msg);
         }
     }
 }
