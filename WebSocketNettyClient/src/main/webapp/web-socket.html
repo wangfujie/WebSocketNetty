@@ -9,7 +9,7 @@
         }
 
         if(window.WebSocket){
-            socket = new WebSocket("ws://127.0.0.1:8888/websocket");
+            socket = new WebSocket("ws://127.0.0.1:10301");
             socket.onmessage = function(event){
                 var ta = document.getElementById('responseContent');
                 ta.value += event.data + "\r\n";

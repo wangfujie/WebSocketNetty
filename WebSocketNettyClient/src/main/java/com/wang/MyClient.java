@@ -29,7 +29,7 @@ public class MyClient {
                 }
             });
             //客户端开启
-            ChannelFuture connect = bootstrap.connect("127.0.0.1", 8888);
+            ChannelFuture connect = bootstrap.connect("127.0.0.1", 10301);
             // 发送客户端的请求
             connect.channel().writeAndFlush(Unpooled.copiedBuffer("request".getBytes()));
             // 等待直到连接中断
